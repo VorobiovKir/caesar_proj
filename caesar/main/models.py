@@ -4,10 +4,11 @@ from django.db import models
 
 
 class Transcription(models.Model):
+    legend = models.CharField(max_length=32)
     text_origin = models.TextField()
-    rot = models.IntegerField(default=0)
+    rot = models.PositiveSmallIntegerField(default=0)
     encrypt = models.BooleanField(default=False)
     pub_date = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __unicode__(self):
-        return self.text_origin[:5]
+        return self.legend

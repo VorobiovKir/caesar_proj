@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
+from .forms import TranscriptionForm
 
-# Create your views here.
+
 def main(request):
-    return render(request, 'main.html')
+
+    return render(request, 'main.html', {'form': TranscriptionForm})
