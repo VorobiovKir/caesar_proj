@@ -4,6 +4,7 @@ __pycache__/
 
 #my_ignore
 .venv_caesar
+db.sqlite3
 
 # C extensions
 *.so
