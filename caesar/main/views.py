@@ -24,7 +24,7 @@ def main(request):
         )
 
         if post_form.is_valid():
-            print 1234
+            post_form.save()
         else:
             error = post_form.errors
             return HttpResponseBadRequest(JsonResponse(error))

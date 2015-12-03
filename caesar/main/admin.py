@@ -1,6 +1,5 @@
 from django.contrib import admin
 
+from .models import Transcription
 
-# Register your models here.
-class ClassName(object):
-	pass
+admin.site.register(Transcription)

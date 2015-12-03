@@ -32,7 +32,7 @@ class TranscriptionForm(forms.ModelForm):
         self.fields['rot'].widget.attrs = {
             'class': 'rot',
             'ng-model': 'rot',
-            # 'min': 0,
+            'min': 0,
         }
 
     class Meta:
