@@ -1,3 +1,7 @@
+.clear{
+    clear: both;
+}
+
 .main_logo{
     width: 100px;
     float: right;
@@ -16,4 +20,28 @@
 
 .head_title a{
     text-decoration: none;
+}
+
+.content{
+    margin-top: 30px;
+}
+
+.cont_usr_text{
+    width: 40%;
+    float: left;
+}
+
+.cont_res_text{
+    width: 40%;
+    float: right;
+    height: 215px;
+    background-color: #eee;
+}
+
+.cont_textarea{
+    margin-top: 30px;
+}
+
+.cont_middle button{
+    width: 100%;
 }

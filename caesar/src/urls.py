@@ -19,5 +19,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', 'main.views.main', name='home')
+    url(r'^$', 'main.views.main', name='home'),
+    url(r'^ajax_test/$', 'main.views.ajax_test', name='ajax_test'),
 ]
