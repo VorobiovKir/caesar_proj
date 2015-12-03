@@ -13,80 +13,52 @@
     <header class="page-header">
         <div class="container">
             <img src="{% static 'images/caesar.png' %}" class="main_logo" alt="">
-            <h1 class='head_title'><a href="">Caesar's Encrypting</a></h1>
+            <h1 class='head_title'><a href="{% url 'home' %}">Caesar's Encrypting</a></h1>
             <p class='quote'>What is done by night appears by day</p>
         </div>
         <div class="clear"></div>
     </header>
-    <div class="container content">
+    <div class="container content" ng-controller="HelloController">
+        <div ng-repeat="(key, value) in errors">
+            <div class="alert alert-danger alert-dismissible" role="alert" ng-repeat="error in value">
+                {% verbatim %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ error }}
+                {% endverbatim %}
+            </div>
+        </div>
         <form action="{% url 'home' %}" method="POST">{% csrf_token %}
             <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="id_legend">@</span>            
+                <span class="input-group-addon" id="id_legend">Legend</span>            
                 {{ form.legend }}
             </div>
             <div class="cont_textarea row">
                 {{ form.text_origin }}
-                <div class="cont_middle col-md-2 col-sm-2 col-lg-2">
-                    <button>Reverse</button>
-                    {{ form.rot }}
-                    <input type="submit" id="post_ajax">
-                    
+                <div class="cont_middle col-md-2 col-sm-2 col-xs-2 col-lg-2">
+                    <button id='id_encrypt' value="{% verbatim %}{{ reverse.value }}{% endverbatim %}" 
+                    class="{% verbatim %}{{ reverse.class }}{% endverbatim %}" ng-model="reverse" ng-click="changeButt($event);" onclick="return false;">
+                        {% verbatim %}{{ reverse.name }}{% endverbatim %}
+                    </button>
+                    <p><span class='rot_label'>ROT: </span> {{ form.rot }}</p>
+                    <div >
+                        <button ng-click="postAjax($event);" onclick="return false;">Convert</button>
+                    </div>
                 </div>
-                <div class="cont_res_text col-md-5 col-sm-5 col-lg-5" id="resultAjax" ng-controller = "HelloController">
-                    {# {{ result }} #}
-                    {# {{ titlem }} #}
+                <div class="cont_res_text col-md-5 col-sm-5 col-xs-5 col-lg-5" id="resultAjax">
                     {% verbatim %}
                         {{ result }}
                     {% endverbatim %}
                 </div>
                 <div class="clear"></div>
+                <div class="clearfix"></div>
             </div>
         </form>
-        <div ng-controller="HelloController">
-            <button ng-click="postAjax($event)">ajax</button>
-        </div>
 
     </div>
 
-<script>
-    
-    var my_app = angular.module('myApp', []).config(function($httpProvider) {
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-    });
-
-    my_app.controller('HelloController', function($scope, $http) {
-            $scope.myData = {};
-            $scope.postAjax = function(event) {
-                var user_text = angular.element(document.querySelector('#id_text_origin')).val();
-                var rot = angular.element(document.querySelector('#id_rot')).val();
-                var ajaxSetting = {                    
-                    method: 'POST',
-                    url: 'http://127.0.0.1:8000/ajax_test/',
-                    params: {
-                        text: user_text,
-                        rot: rot
-                    },
-                    cache: false,
-                };
-
-                // var url = 'http://127.0.0.1:8000/ajax_test/';
-                var responsePromise = $http(ajaxSetting);
-
-                responsePromise.success(function(data) {
-                    
-                    angular.element(document.querySelector('#resultAjax')).html(data.result);
-                });
-                responsePromise.error(function(data) {
-                    alert('error_new');
-                });
-            };
-        });
-
-
-</script>
-
-
+{# ANGULAR my library #}
+<script src="{% static 'js/angular/postAjax.js' %}"></script>
+{# BOOTSTRAP #}
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>

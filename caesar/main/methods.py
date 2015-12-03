@@ -1,8 +1,8 @@
 def encrypting(text, rot, reverse=False):
     if reverse:
-        step = -rot
+        step = -int(rot)
     else:
-        step = rot
+        step = int(rot)
 
     result = ''
     for char in text:

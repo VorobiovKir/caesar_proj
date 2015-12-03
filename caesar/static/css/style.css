@@ -45,3 +45,21 @@
 .cont_middle button{
     width: 100%;
 }
+
+.cont_middle .rot{
+    width: 50%;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.cont_middle .rot_label{
+    width: 100%;
+}
+
+.transit{
+    color: green;
+}
+
+.encrypt{
+    color: tomato;
+}

@@ -9,10 +9,10 @@ class TranscriptionForm(forms.ModelForm):
         label='Title',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control col-md-5 col-sm-5 col-lg-5',
-                'id': 'origin text',
+                'class': 'form-control col-md-5 col-sm-5 col-lg-5 col-xs-5',
                 'placeholder': 'Pls fill briefly description',
-                'aria-describedby': 'sizing-addon1'
+                'aria-describedby': 'sizing-addon1',
+                'ng-model': 'legend'
             }
         )
     )
@@ -22,10 +22,19 @@ class TranscriptionForm(forms.ModelForm):
             attrs={
                 'class': 'form-control cont_usr_text col-md-5',
                 'placeholder': 'Enter your normal text',
+                'ng-model': 'user_text'
             }
         )
     )
 
+    def __init__(self, *args, **kwargs):
+        super(TranscriptionForm, self).__init__(*args, **kwargs)
+        self.fields['rot'].widget.attrs = {
+            'class': 'rot',
+            'ng-model': 'rot',
+            # 'min': 0,
+        }
+
     class Meta:
         model = Transcription
-        fields = ['legend', 'text_origin', 'rot']
+        fields = ['legend', 'text_origin', 'rot', 'encrypt']
