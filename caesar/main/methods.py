@@ -25,12 +25,7 @@ def countChar(text):
 
     for char in text:
         if char.isalpha():
-            if not resDict.get(char):
-                resDict[char] = 1
-            else:
-                resDict[char] += 1
-        else:
-            continue
+            resDict[char] = resDict.get(char, 0) + 1
 
     return resDict
 
