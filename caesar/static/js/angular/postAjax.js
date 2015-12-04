@@ -14,6 +14,7 @@ my_app.controller('HelloController', function($scope, $http) {
         $scope.legend = '';
         $scope.letters = '';
         $scope.test = 'test';
+        $scope.possible_rot = '';
         $scope.showDiagram = function() {
             var revenueChart = new FusionCharts({
                     "type": "column2d",
@@ -53,6 +54,7 @@ my_app.controller('HelloController', function($scope, $http) {
             responsePromise.success(function(data) {
                 $scope.result = data.result;
                 $scope.letters = data.letters;
+                $scope.possible_rot = data.possible_rot
                 $scope.errors = '';
                 $scope.showDiagram();
             });

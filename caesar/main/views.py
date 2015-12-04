@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseBadRequest
 
 from .forms import TranscriptionForm
-from .methods import encrypting, countChar, convertToDiagram
+from .methods import encrypting, countChar, convertToDiagram, possibleRot
 
 
 def main(request):
@@ -31,6 +31,7 @@ def main(request):
 
         response['result'] = encrypting(text, rot, reverse)
         response['letters'] = convertToDiagram(countChar(text))
+        response['possible_rot'] = possibleRot(text)
 
         return HttpResponse(JsonResponse(response))
     else:

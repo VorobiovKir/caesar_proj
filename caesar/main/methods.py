@@ -24,10 +24,13 @@ def countChar(text):
     resDict = {}
 
     for char in text:
-        if not resDict.get(char):
-            resDict[char] = 1
+        if char.isalpha():
+            if not resDict.get(char):
+                resDict[char] = 1
+            else:
+                resDict[char] += 1
         else:
-            resDict[char] += 1
+            continue
 
     return resDict
 
@@ -37,3 +40,18 @@ def convertToDiagram(dict):
     for k, v in dict.items():
         li.append({'label': k, 'value': v})
     return li
+
+
+def possibleRot(text):
+    letter_dict = countChar(text)
+    max_count_lett = max(letter_dict, key=letter_dict.get)
+    ordering_lett = [101, 97, 104, 111, 105, 110]
+    if len(text) > 10:
+        if ord(max_count_lett) in ordering_lett:
+            return 'We think, you don\'t need to encrypt your text!'
+        else:
+            return 'We think, you can try ' + \
+                ', '.join([str(abs(i - ord(max_count_lett))) for i in ordering_lett]) + \
+                ' ROT\'S to encrypt your text'
+    else:
+        return 'It\'s too short, we can\'t analyzing your text'

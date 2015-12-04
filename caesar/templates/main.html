@@ -23,8 +23,8 @@
     <div class="container content" ng-controller="HelloController">
         <div ng-repeat="(key, value) in errors">
             <div class="alert alert-danger alert-dismissible" role="alert" ng-repeat="error in value">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {% verbatim %}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{ error }}
                 {% endverbatim %}
             </div>
@@ -33,6 +33,12 @@
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="id_legend">Legend</span>            
                 {{ form.legend }}
+            </div>
+
+            <div ng-if="possible_rot" class="alert alert-success" role="alert">
+                {% verbatim %}
+                    {{ possible_rot }}
+                {% endverbatim %}
             </div>
             <div class="cont_textarea row">
                 {{ form.text_origin }}
