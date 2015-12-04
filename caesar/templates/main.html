@@ -46,7 +46,9 @@
                 <div class="cont_middle col-md-2 col-sm-2 col-xs-2 col-lg-2">
                     <button id='id_encrypt' value="{% verbatim %}{{ reverse.value }}{% endverbatim %}" 
                     class="{% verbatim %}{{ reverse.class }}{% endverbatim %}" ng-model="reverse" ng-click="changeButt($event);" onclick="return false;">
-                        {% verbatim %}{{ reverse.name }}{% endverbatim %}
+                        {% verbatim %}
+                            {{ reverse.name }}
+                        {% endverbatim %}
                     </button>
                     <p><span class='rot_label'>ROT: </span> {{ form.rot }}</p>
                     <div >

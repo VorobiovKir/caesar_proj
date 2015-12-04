@@ -28,7 +28,7 @@ my_app.controller('HelloController', function($scope, $http) {
                           "subCaption": "Count your char",
                           "xAxisName": "Your letter(s)",
                           "yAxisName": "Count(s)",
-                          "theme": "fint"
+                          "theme": "fint",
                        },
                       "data": $scope.letters
                     }
