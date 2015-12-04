@@ -12,6 +12,28 @@ my_app.controller('HelloController', function($scope, $http) {
         $scope.reverse = {value: '', name: 'Transit', class: 'transit'};
         $scope.errors = '';
         $scope.legend = '';
+        $scope.letters = '';
+        $scope.test = 'test';
+        $scope.showDiagram = function() {
+            var revenueChart = new FusionCharts({
+                    "type": "column2d",
+                    "renderAt": "chartContainer",
+                    "width": "100%",
+                    "height": "300",
+                    "dataFormat": "json",
+                    "dataSource": {
+                      "chart": {
+                          "caption": "Analyzing your text",
+                          "subCaption": "Count your char",
+                          "xAxisName": "Your letter(s)",
+                          "yAxisName": "Count(s)",
+                          "theme": "fint"
+                       },
+                      "data": $scope.letters
+                    }
+                });
+            revenueChart.render();
+        }
         $scope.postAjax = function(event) {
             
             var ajaxSetting = {                    
@@ -30,7 +52,9 @@ my_app.controller('HelloController', function($scope, $http) {
 
             responsePromise.success(function(data) {
                 $scope.result = data.result;
+                $scope.letters = data.letters;
                 $scope.errors = '';
+                $scope.showDiagram();
             });
 
             responsePromise.error(function(data) {

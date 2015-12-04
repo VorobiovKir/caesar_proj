@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseBadRequest
 
 from .forms import TranscriptionForm
-from .methods import encrypting
+from .methods import encrypting, countChar, convertToDiagram
 
 
 def main(request):
@@ -30,6 +30,7 @@ def main(request):
             return HttpResponseBadRequest(JsonResponse(error))
 
         response['result'] = encrypting(text, rot, reverse)
+        response['letters'] = convertToDiagram(countChar(text))
 
         return HttpResponse(JsonResponse(response))
     else:
