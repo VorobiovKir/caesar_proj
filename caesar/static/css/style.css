@@ -63,3 +63,7 @@
 .encrypt{
     color: tomato;
 }
+
+.alert-success{
+    margin-top: 20px;
+}

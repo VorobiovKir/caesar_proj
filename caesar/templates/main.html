@@ -35,7 +35,8 @@
                 {{ form.legend }}
             </div>
 
-            <div ng-if="possible_rot" class="alert alert-success" role="alert">
+            <div ng-if="possible_rot" class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 {% verbatim %}
                     {{ possible_rot }}
                 {% endverbatim %}
